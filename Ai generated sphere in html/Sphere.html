@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      #sphere {
+        width: 200px;
+        height: 200px;
+        background-color: #008080;
+        border-radius: 50%;
+        transition: transform 0.1s;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="sphere"></div>
+    <script>
+      var sphere = document.getElementById("sphere");
+      sphere.addEventListener("mousedown", startRotate);
+      document.addEventListener("mouseup", stopRotate);
+      var rotate = false;
+      var prevX;
+      function startRotate(e) {
+        rotate = true;
+        prevX = e.clientX;
+      }
+      function stopRotate() {
+        rotate = false;
+      }
+      document.addEventListener("mousemove", function(e) {
+        if (!rotate) return;
+        var dx = e.clientX - prevX;
+        sphere.style.transform = "rotateY(" + dx + "deg)";
+      });
+    </script>
+  </body>
+</html>
